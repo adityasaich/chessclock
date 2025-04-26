@@ -14,6 +14,7 @@ function Player({ time, onClick, isWhiteColor }) {
       style={{
         color: "green",
         backgroundColor: bgColor,
+        flex: "5 5 0"
       }}
       onClick={onClick}
     >
