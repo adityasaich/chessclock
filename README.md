@@ -1,2 +1,2 @@
 # chessclock
-chess clcok bc online ones are shitt
+wanted my custom chess clock
