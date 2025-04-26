@@ -48,9 +48,9 @@ function  GameScreen({time,increment}) {
 
   return (
     <div>
-    <Player onClick={playGame} time={player1Time} />
+    <Player onClick={playGame} time={player1Time} isWhiteColor={isPlayer1White} />
     { gameStarted ?   <></> : <div class="swap" onClick={swapPlayers}>Swap</div> }
-    <Player onClick={playGame} time={player2Time} />
+    <Player onClick={playGame} time={player2Time} isWhiteColor={!isPlayer1White} />
     </div>
   );
 }
