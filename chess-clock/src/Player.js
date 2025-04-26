@@ -14,11 +14,19 @@ function Player({ time, onClick, isWhiteColor }) {
       style={{
         color: "green",
         backgroundColor: bgColor,
-        flex: "5 5 0"
+        flex: "1 1 0",
+        flexDirection: "column",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
       }}
       onClick={onClick}
     >
-      {time}
+        <div  style = {{height: "100%", flex:"1 1 0"}}>
+      <h1>
+        {time}
+      </h1>
+      </div>
     </div>
   );
 }
