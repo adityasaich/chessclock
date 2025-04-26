@@ -23,10 +23,6 @@ function  GameScreen({time,increment}) {
   useEffect(() => {
     
     const decrementTime = () => {
-        console.log("decrementTime called")
-        // if(player1Time === 0 || player2Time === 0) {
-        //     endGame();
-        // }
         if(isPlayer1Active) {
             setPlayer1Time(pt => pt - 1);
         } else {
