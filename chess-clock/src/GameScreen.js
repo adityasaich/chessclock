@@ -34,9 +34,6 @@ function  GameScreen({time,increment}) {
         const myInterval = setInterval(decrementTime, 1000);
         return () => clearInterval(myInterval);
       }
-    //   if(player1Time !== 0 && player2Time !== 0){
-        // create a interval and get the id
-    // }
   }, [isPlayer1Active, gameStarted, gameEnded]);
 
   const playGame = () => {
