@@ -1,7 +1,7 @@
 {
   "name": "chess-clock",
   "version": "0.1.0",
-  "homepage": "https://adityasaich.github.io/react-gh-pages",
+  "homepage": "https://adityasaich.github.io/chessclock",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
