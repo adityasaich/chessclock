@@ -17,7 +17,7 @@ function App() {
 
   return (
       <div>
-        { gameStarted ? <GameScreen time={time} increment={increment} /> : <ConfigScreen onStart={startGame}/> }
+        <GameScreen time={0.2} increment={5} />         
       </div>
   )
 }
