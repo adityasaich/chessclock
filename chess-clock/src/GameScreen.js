@@ -80,9 +80,10 @@ function  GameScreen({time,increment}) {
           height: "10vh"
         }}
       >
-        <h1 style = {{
+        <h2 style = {{
           color: "#FFFFFF",
-        }}> Swap White And Black</h1>
+        }}> Swap White And Black
+        </h2>
       </div> }
     <Player onClick={handlePlayerMove} time={player2Time} isWhiteColor={!isPlayer1White} />
     </div>
