@@ -58,7 +58,7 @@ function  GameScreen({time,increment}) {
   return (
     <div style={{height: "100vh",textAlign: "center",display: "flex",flexDirection: "column"}}>
     <Player onClick={playGame} time={player1Time} isWhiteColor={isPlayer1White} />
-    { gameStarted ?   <></> : 
+    { !gameStarted &&
       <div
         onClick={swapPlayers}
         style = {{
