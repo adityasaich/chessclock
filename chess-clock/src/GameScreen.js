@@ -8,32 +8,44 @@ function  GameScreen({time,increment}) {
   const [player1Time, setPlayer1Time] = useState(time * 60);
   const [player2Time, setPlayer2Time] = useState(time * 60);
   const [gameStarted, setGameStarted] = useState(false);
+  const [gameEnded, setGameEnded] = useState(false);
   
   const player1ActiveRef = useRef(isPlayer1Active);
   const player1TimeRef = useRef(player1Time);
   const player2TimeRef = useRef(player2Time);
+  const gameStartedRef = useRef(gameStarted);
   const intervalTimeRef = useRef(null);
   
-  const setPlayer1Active = (active) => {
+  const setPlayer1ActiveAndRef = (active) => {
     player1ActiveRef.current = active;
     setIsPlayer1Active(active);
   }
 
-  const setPlayerTime1 = (time) => {
+  const setGameStartedAndRef = (started) => {
+    gameStartedRef.current = started;
+    setGameStarted(started);
+  }
+
+  const setPlayer1TimeAndRef = (time) => {
     player1TimeRef.current = time;
     setPlayer1Time(time);
   }
 
-  const setPlayerTime2 = (time) => {
+  const setPlayer2TimeAndRef = (time) => {
     player2TimeRef.current = time;
     setPlayer2Time(time);
   }
 
   const timer = () => {
-    if(player1ActiveRef.current) {
-        setPlayerTime1(player1TimeRef.current - 1);
+    if(player1TimeRef.current === 0 || player2TimeRef.current === 0) {
+      setGameEnded(true);
+      clearInterval(intervalTimeRef.current);
     } else {
-        setPlayerTime2(player2TimeRef.current - 1);
+      if(player1ActiveRef.current) {
+          setPlayer1TimeAndRef(player1TimeRef.current - 1);
+      } else {
+          setPlayer2TimeAndRef(player2TimeRef.current - 1);
+      }
     }
   }
 
@@ -42,12 +54,19 @@ function  GameScreen({time,increment}) {
   };
 
   const handlePlayerMove = () => {
-    if(!gameStarted) {
-        setPlayer1Active(isPlayer1White);
-        setGameStarted(true);
-        startGame();
-    } else {
-        setPlayer1Active(!isPlayer1Active)
+    if(!gameEnded) {
+      if(!gameStarted) {
+          setPlayer1ActiveAndRef(isPlayer1White);
+          setGameStartedAndRef(true);
+          startGame();
+      } else {
+        if(isPlayer1Active) {
+            setPlayer1TimeAndRef(player1TimeRef.current + increment);
+        } else {
+            setPlayer2TimeAndRef(player2TimeRef.current + increment);
+        }
+        setPlayer1ActiveAndRef(!isPlayer1Active)
+      }
     }
   }
 
