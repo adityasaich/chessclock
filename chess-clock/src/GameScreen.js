@@ -48,25 +48,22 @@ function  GameScreen({time,increment}) {
       }
     }
   }
-
-  let startGame = () =>  {
-      intervalTimeRef.current = setInterval(timer, 1000);
-  };
-
+  
   const handlePlayerMove = () => {
     if(!gameEnded) {
       if(!gameStarted) {
           setPlayer1ActiveAndRef(isPlayer1White);
           setGameStartedAndRef(true);
-          startGame();
       } else {
+        clearInterval(intervalTimeRef.current);
         if(isPlayer1Active) {
             setPlayer1TimeAndRef(player1TimeRef.current + increment);
         } else {
             setPlayer2TimeAndRef(player2TimeRef.current + increment);
         }
-        setPlayer1ActiveAndRef(!isPlayer1Active)
+        setPlayer1ActiveAndRef(!isPlayer1Active);
       }
+      intervalTimeRef.current = setInterval(timer, 1000);
     }
   }
 
