@@ -16,11 +16,6 @@ function  GameScreen({time,increment}) {
   const gameStartedRef = useRef(gameStarted);
   const intervalTimeRef = useRef(null);
   
-  const setPlayer1ActiveAndRef = (active) => {
-    player1ActiveRef.current = active;
-    setIsPlayer1Active(active);
-  }
-
   const setGameStartedAndRef = (started) => {
     gameStartedRef.current = started;
     setGameStarted(started);
@@ -36,24 +31,25 @@ function  GameScreen({time,increment}) {
     setPlayer2Time(time);
   }
 
-  const timer = () => {
+  const timer = (isP1Active) => {
     if(player1TimeRef.current === 0 || player2TimeRef.current === 0) {
       setGameEnded(true);
       clearInterval(intervalTimeRef.current);
     } else {
-      if(player1ActiveRef.current) {
+      if(isP1Active) {
           setPlayer1TimeAndRef(player1TimeRef.current - 1);
       } else {
           setPlayer2TimeAndRef(player2TimeRef.current - 1);
       }
     }
   }
-  
+
   const handlePlayerMove = () => {
     if(!gameEnded) {
       if(!gameStarted) {
-          setPlayer1ActiveAndRef(isPlayer1White);
+        setIsPlayer1Active(isPlayer1White);
           setGameStartedAndRef(true);
+          intervalTimeRef.current = setInterval(timer, 1000, isPlayer1White);
       } else {
         clearInterval(intervalTimeRef.current);
         if(isPlayer1Active) {
@@ -61,9 +57,10 @@ function  GameScreen({time,increment}) {
         } else {
             setPlayer2TimeAndRef(player2TimeRef.current + increment);
         }
-        setPlayer1ActiveAndRef(!isPlayer1Active);
+        setIsPlayer1Active(!isPlayer1Active);
+        intervalTimeRef.current = setInterval(timer, 1000, !isPlayer1Active);
       }
-      intervalTimeRef.current = setInterval(timer, 1000);
+
     }
   }
 
