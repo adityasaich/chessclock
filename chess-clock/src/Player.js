@@ -4,15 +4,18 @@ import "./App.css";
 
 function Player({ time, onClick, isWhiteColor }) {
   let bgColor;
+  let color;
   if (isWhiteColor) {
-    bgColor = "white";
+    bgColor = "#F0F0F0";
+    color = "#0057B8";
   } else {
-    bgColor = "black";
+    bgColor = "#202020";
+    color = "#FFA500";
   }
   return (
     <div
       style={{
-        color: "green",
+        color: color,
         backgroundColor: bgColor,
         flex: "1 1 auto",
         flexDirection: "column",
