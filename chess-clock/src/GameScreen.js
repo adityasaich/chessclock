@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import "./App.css";
 import Player from './Player'
 
@@ -9,6 +9,8 @@ function  GameScreen({time,increment}) {
   const [player2Time, setPlayer2Time] = useState(time * 60);
   const [gameStarted, setGameStarted] = useState(false);
   const [gameEnded, setGameEnded] = useState(false);
+
+  const prevIsPlayer1Active = useRef(true);
 
   const swapPlayers = () => {
     setIsPlayer1White((p1White) => !p1White);
@@ -31,19 +33,26 @@ function  GameScreen({time,increment}) {
       }
        
       if(gameStarted && !gameEnded){
+        if(prevIsPlayer1Active.current &&!isPlayer1Active) {
+          prevIsPlayer1Active.current = false;
+          setPlayer1Time(pt => pt + increment);     
+        } else if (!prevIsPlayer1Active.current && isPlayer1Active){
+          prevIsPlayer1Active.current = true;
+          setPlayer2Time(pt => pt + increment);
+        }
         const myInterval = setInterval(decrementTime, 1000);
         return () => clearInterval(myInterval);
       }
-  }, [isPlayer1Active, gameStarted, gameEnded]);
+  }, [isPlayer1Active, gameStarted, gameEnded, increment]);
 
   const playGame = () => {
     if(!gameStarted) {
         setIsPlayer1Active(isPlayer1White);
+        prevIsPlayer1Active.current = isPlayer1Active;
         setGameStarted(true);
     } else {
         setIsPlayer1Active(pa => !pa)
     }
-    
   }
 
   return (
