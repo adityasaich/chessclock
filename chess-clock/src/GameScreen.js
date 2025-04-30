@@ -44,6 +44,7 @@ function  GameScreen({time,increment}) {
   }
 
   const handlePlayerMove = () => {
+    if (navigator.vibrate) navigator.vibrate(200); 
     if(!gameEnded) {
       if(!gameStarted) {
         setIsPlayer1Active(isPlayer1White);
@@ -59,7 +60,6 @@ function  GameScreen({time,increment}) {
         setIsPlayer1Active(!isPlayer1Active);
         intervalTimeRef.current = setInterval(timer, 1000, !isPlayer1Active);
       }
-
     }
   }
 
