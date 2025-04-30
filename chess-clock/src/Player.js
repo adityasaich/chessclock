@@ -9,7 +9,7 @@ function formatTime(totalSeconds) {
   return `${minutes}:${formattedSeconds}`;
 }
 
-function Player({ time, onClick, isWhiteColor }) {
+function Player({ time, onClick, isWhiteColor, isActive }) {
   let bgColor;
   let color;
   if (isWhiteColor) {
@@ -19,6 +19,7 @@ function Player({ time, onClick, isWhiteColor }) {
     bgColor = "#202020";
     color = "#FFA500";
   }
+  let textBgColor =  isActive ? (isWhiteColor ? "#FFFFFF" : "#000000") :  bgColor;
   return (
     <div
       style={{
@@ -33,8 +34,8 @@ function Player({ time, onClick, isWhiteColor }) {
       }}
       onClick={onClick}
     >
-        <div style = {{flex:"1 1 0"}}>
-      <h1 style={{"font-size": "100px"}}>
+      <div style = {{flex:"1 1 0"}}>
+      <h1 style={{"font-size": "100px" , backgroundColor: textBgColor, padding: "20px", borderRadius : "20px"}}>
         {formatTime(time)}
       </h1>
       </div>

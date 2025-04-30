@@ -70,7 +70,7 @@ function  GameScreen({time,increment}) {
 
   return (
     <div style={{height: "100vh",textAlign: "center",display: "flex",flexDirection: "column"}}>
-    <Player onClick={handlePlayerMove} time={player1Time} isWhiteColor={isPlayer1White} />
+    <Player onClick={handlePlayerMove} time={player1Time} isWhiteColor={isPlayer1White} isActive={isPlayer1Active}/>
     { !gameStarted &&
       <div
         onClick={swapPlayers}
@@ -84,7 +84,7 @@ function  GameScreen({time,increment}) {
         }}> Swap White And Black
         </h2>
       </div> }
-    <Player onClick={handlePlayerMove} time={player2Time} isWhiteColor={!isPlayer1White} />
+    <Player onClick={handlePlayerMove} time={player2Time} isWhiteColor={!isPlayer1White} isActive={!isPlayer1Active}/>
     </div>
   );
 }
