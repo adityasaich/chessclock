@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState, useRef} from "react";
 import "./App.css";
 import Player from './Player'
 
@@ -10,7 +10,6 @@ function  GameScreen({time,increment}) {
   const [gameStarted, setGameStarted] = useState(false);
   const [gameEnded, setGameEnded] = useState(false);
   
-  const player1ActiveRef = useRef(isPlayer1Active);
   const player1TimeRef = useRef(player1Time);
   const player2TimeRef = useRef(player2Time);
   const gameStartedRef = useRef(gameStarted);
