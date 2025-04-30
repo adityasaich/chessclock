@@ -24,7 +24,7 @@ function Player({ time, onClick, isWhiteColor, isActive }) {
   const handleTouchStart = () => {
     if (navigator.vibrate) navigator.vibrate(200); 
   }
-  
+
   return (
     <div
       style={{
@@ -41,7 +41,7 @@ function Player({ time, onClick, isWhiteColor, isActive }) {
       onTouchStart={handleTouchStart}
     >
       <div style = {{flex:"1 1 0"}}>
-      <h1 style={{"font-size": "5em" , backgroundColor: textBgColor, padding: "0.2em", borderRadius : "0.2em"}}>
+      <h1 style={{"font-size": "15vh" , backgroundColor: textBgColor, padding: "0.2em", borderRadius : "0.2em"}}>
         {formatTime(time)}
       </h1>
       </div>
