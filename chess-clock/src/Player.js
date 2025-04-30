@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useRef} from "react";
 
 import "./App.css";
 
@@ -20,9 +20,14 @@ function Player({ time, onClick, isWhiteColor, isActive }) {
     color = "#FFA500";
   }
   let textBgColor =  isActive ? (isWhiteColor ? "#FFFFFF" : "#000000") :  bgColor;
+  const audioRef = useRef(new Audio('/Move.mp3'));
+
 
   const handleTouchStart = () => {
-    if (navigator.vibrate) navigator.vibrate(200); 
+    navigator.vibrate && navigator.vibrate(200);
+    audioRef?.current.play().catch((e) => {
+      console.error('Audio playback failed:', e);
+    });
   }
 
   return (
