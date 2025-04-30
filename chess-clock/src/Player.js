@@ -20,6 +20,11 @@ function Player({ time, onClick, isWhiteColor, isActive }) {
     color = "#FFA500";
   }
   let textBgColor =  isActive ? (isWhiteColor ? "#FFFFFF" : "#000000") :  bgColor;
+
+  const handleTouchStart = () => {
+    if (navigator.vibrate) navigator.vibrate(200); 
+  }
+  
   return (
     <div
       style={{
@@ -33,6 +38,7 @@ function Player({ time, onClick, isWhiteColor, isActive }) {
         height: "45vh"
       }}
       onClick={onClick}
+      onTouchStart={handleTouchStart}
     >
       <div style = {{flex:"1 1 0"}}>
       <h1 style={{"font-size": "5em" , backgroundColor: textBgColor, padding: "0.2em", borderRadius : "0.2em"}}>
