@@ -2,6 +2,13 @@ import React from "react";
 
 import "./App.css";
 
+function formatTime(totalSeconds) {
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  const formattedSeconds = String(seconds).padStart(2, '0');
+  return `${minutes}:${formattedSeconds}`;
+}
+
 function Player({ time, onClick, isWhiteColor }) {
   let bgColor;
   let color;
@@ -27,8 +34,8 @@ function Player({ time, onClick, isWhiteColor }) {
       onClick={onClick}
     >
         <div style = {{flex:"1 1 0"}}>
-      <h1>
-        {time}
+      <h1 style={{"font-size": "100px"}}>
+        {formatTime(time)}
       </h1>
       </div>
     </div>
