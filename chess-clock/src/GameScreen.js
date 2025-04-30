@@ -44,7 +44,6 @@ function  GameScreen({time,increment}) {
   }
 
   const handlePlayerMove = () => {
-    if (navigator.vibrate) navigator.vibrate(200); 
     if(!gameEnded) {
       if(!gameStarted) {
         setIsPlayer1Active(isPlayer1White);
@@ -68,9 +67,13 @@ function  GameScreen({time,increment}) {
     setIsPlayer1White((p1White) => !p1White);
   }
 
+  const handleTouchStart = () => {
+    if (navigator.vibrate) navigator.vibrate(200); 
+  }
+
   return (
     <div style={{height: "100vh",textAlign: "center",display: "flex",flexDirection: "column"}}>
-    <Player onClick={handlePlayerMove} time={player1Time} isWhiteColor={isPlayer1White} isActive={isPlayer1Active}/>
+    <Player onTouchStart={handleTouchStart} onClick={handlePlayerMove} time={player1Time} isWhiteColor={isPlayer1White} isActive={isPlayer1Active} />
     { !gameStarted &&
       <div
         onClick={swapPlayers}
@@ -84,7 +87,7 @@ function  GameScreen({time,increment}) {
         }}> Swap White And Black
         </h2>
       </div> }
-    <Player onClick={handlePlayerMove} time={player2Time} isWhiteColor={!isPlayer1White} isActive={!isPlayer1Active}/>
+    <Player onTouchStart={handleTouchStart} onClick={handlePlayerMove} time={player2Time} isWhiteColor={!isPlayer1White} isActive={!isPlayer1Active}/>
     </div>
   );
 }

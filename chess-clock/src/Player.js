@@ -35,7 +35,7 @@ function Player({ time, onClick, isWhiteColor, isActive }) {
       onClick={onClick}
     >
       <div style = {{flex:"1 1 0"}}>
-      <h1 style={{"font-size": "100px" , backgroundColor: textBgColor, padding: "20px", borderRadius : "20px"}}>
+      <h1 style={{"font-size": "5em" , backgroundColor: textBgColor, padding: "0.2em", borderRadius : "0.2em"}}>
         {formatTime(time)}
       </h1>
       </div>
