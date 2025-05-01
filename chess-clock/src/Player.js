@@ -20,7 +20,7 @@ function Player({ time, onClick, isWhiteColor, isActive }) {
     color = "#FFA500";
   }
   let textBgColor =  isActive ? (isWhiteColor ? "#FFFFFF" : "#000000") :  bgColor;
-  const audioRef = useRef(new Audio('/Move.mp3'));
+  let audioRef = useRef(null);
 
 
   const handleTouchStart = () => {
@@ -50,6 +50,7 @@ function Player({ time, onClick, isWhiteColor, isActive }) {
         {formatTime(time)}
       </h1>
       </div>
+      <audio ref={audioRef} src="/move.mp3" preload="auto" />
     </div>
   );
 }
