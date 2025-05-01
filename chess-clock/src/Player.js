@@ -10,7 +10,7 @@ function formatTime(totalSeconds) {
   return `${minutes}:${formattedSeconds}`;
 }
 
-function Player({ time, onClick, isWhiteColor, isActive }) {
+function Player({ time, onClick, isWhiteColor, isActive, isPlayer1 }) {
   let bgColor;
   let color;
   if (isWhiteColor) {
@@ -28,6 +28,8 @@ function Player({ time, onClick, isWhiteColor, isActive }) {
     moveSound.current.play().catch(e => console.error(e))
   }
 
+  let transform = isPlayer1 ? 'rotateX(180deg) scaleX(-1)'  : ''
+
   return (
     <div
       style={{
@@ -44,7 +46,7 @@ function Player({ time, onClick, isWhiteColor, isActive }) {
       onTouchStart={handleTouchStart}
     >
       <div style = {{flex:"1 1 0"}}>
-      <h1 style={{"font-size": "15vh" , backgroundColor: textBgColor, padding: "0.2em", borderRadius : "0.2em"}}>
+      <h1 style={{"font-size": "15vh" , backgroundColor: textBgColor, padding: "0.2em", borderRadius : "0.2em" ,transform }}>
         {formatTime(time)}
       </h1>
       </div>
