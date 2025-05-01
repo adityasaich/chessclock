@@ -1,6 +1,7 @@
 import React, {useState, useRef} from "react";
 import "./App.css";
 import Player from './Player'
+import gameover from './gameover.mp3'
 
 function  GameScreen({time,increment}) {
   const [isPlayer1White, setIsPlayer1White] = useState(true);
@@ -34,6 +35,8 @@ function  GameScreen({time,increment}) {
     if(player1TimeRef.current === 0 || player2TimeRef.current === 0) {
       setGameEnded(true);
       clearInterval(intervalTimeRef.current);
+      let gameoveraudio = new Audio(gameover);
+      gameoveraudio.play().catch(e => console.error(e));
     } else {
       if(isP1Active) {
           setPlayer1TimeAndRef(player1TimeRef.current - 1);
