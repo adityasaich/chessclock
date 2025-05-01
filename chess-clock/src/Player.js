@@ -1,6 +1,7 @@
 import React,{useRef} from "react";
 
 import "./App.css";
+import moveSoundFile from "./Move.mp3";
 
 function formatTime(totalSeconds) {
   const minutes = Math.floor(totalSeconds / 60);
@@ -20,14 +21,11 @@ function Player({ time, onClick, isWhiteColor, isActive }) {
     color = "#FFA500";
   }
   let textBgColor =  isActive ? (isWhiteColor ? "#FFFFFF" : "#000000") :  bgColor;
-  let audioRef = useRef(null);
-
+  let moveSound = useRef(new Audio(moveSoundFile));
 
   const handleTouchStart = () => {
     navigator.vibrate && navigator.vibrate(200);
-    audioRef?.current.play().catch((e) => {
-      console.error('Audio playback failed:', e);
-    });
+    moveSound.current.play().catch(e => console.error(e))
   }
 
   return (
@@ -50,7 +48,6 @@ function Player({ time, onClick, isWhiteColor, isActive }) {
         {formatTime(time)}
       </h1>
       </div>
-      <audio ref={audioRef} src="/move.mp3" preload="auto" />
     </div>
   );
 }
