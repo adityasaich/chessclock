@@ -1,6 +1,7 @@
 import React, {useState, useRef} from "react";
 import "./App.css";
 import Player from './Player'
+import Pause from './Pause'
 import gameover from './gameover.mp3'
 
 function  GameScreen({time,increment}) {
@@ -10,6 +11,7 @@ function  GameScreen({time,increment}) {
   const [player2Time, setPlayer2Time] = useState(time * 60);
   const [gameStarted, setGameStarted] = useState(false);
   const [gameEnded, setGameEnded] = useState(false);
+  const [gamePaused, setGamePaused] = useState(false);
   
   const player1TimeRef = useRef(player1Time);
   const player2TimeRef = useRef(player2Time);
@@ -47,7 +49,7 @@ function  GameScreen({time,increment}) {
   }
 
   const handlePlayerMove = () => {
-    if(!gameEnded) {
+    if(!gameEnded && !gamePaused) {
       if(!gameStarted) {
         setIsPlayer1Active(isPlayer1White);
           setGameStartedAndRef(true);
@@ -70,7 +72,20 @@ function  GameScreen({time,increment}) {
     setIsPlayer1White((p1White) => !p1White);
   }
 
+  const handlePauseClick = () => {
+    if(gameStarted) {
+      if(gamePaused) {
+        intervalTimeRef.current = setInterval(timer, 1000, isPlayer1Active);
+      } else {
+        clearInterval(intervalTimeRef.current);
+      }
+      setGamePaused(!gamePaused);
+    }
+  }
+
   return (
+    <div>
+    <Pause paused={gamePaused} onClick={handlePauseClick}></Pause>
     <div style={{height: "100vh",textAlign: "center",display: "flex",flexDirection: "column"}}>
     <Player onClick={handlePlayerMove} time={player1Time} isWhiteColor={isPlayer1White} isActive={isPlayer1Active} isPlayer1={true} />
     { !gameStarted &&
@@ -87,6 +102,7 @@ function  GameScreen({time,increment}) {
         </h2>
       </div> }
     <Player onClick={handlePlayerMove} time={player2Time} isWhiteColor={!isPlayer1White} isActive={!isPlayer1Active} isPlayer1={false}/>
+    </div>
     </div>
   );
 }

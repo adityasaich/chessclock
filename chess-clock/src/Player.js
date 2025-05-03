@@ -31,6 +31,8 @@ function Player({ time, onClick, isWhiteColor, isActive, isPlayer1 }) {
   let transform = isPlayer1 ? 'rotateX(180deg) scaleX(-1)'  : ''
 
   return (
+    <div>
+
     <div
       style={{
         color: color,
@@ -50,6 +52,7 @@ function Player({ time, onClick, isWhiteColor, isActive, isPlayer1 }) {
         {formatTime(time)}
       </h1>
       </div>
+    </div>
     </div>
   );
 }
