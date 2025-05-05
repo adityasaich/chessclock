@@ -10,7 +10,7 @@ function formatTime(totalSeconds) {
   return `${minutes}:${formattedSeconds}`;
 }
 
-function Player({ time, onClick, isWhiteColor, isActive, isPlayer1 }) {
+function Player({ time, onClick, isWhiteColor, isActive, isPlayer1 , isSoundOn, isVibrateOn }) {
   let bgColor;
   let color;
   if (isWhiteColor) {
@@ -24,8 +24,8 @@ function Player({ time, onClick, isWhiteColor, isActive, isPlayer1 }) {
   let moveSound = useRef(new Audio(moveSoundFile));
 
   const handleTouchStart = () => {
-    navigator.vibrate && navigator.vibrate(200);
-    moveSound.current.play().catch(e => console.error(e))
+    isVibrateOn && navigator.vibrate && navigator.vibrate(200);
+    isSoundOn && moveSound.current.play().catch(e => console.error(e))
   }
 
   let transform = isPlayer1 ? 'rotateX(180deg) scaleX(-1)'  : ''

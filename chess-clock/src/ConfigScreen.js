@@ -1,6 +1,9 @@
 import "./App.css";
+import React from "react";
 
-function ConfigScreen({onStart}) {
+
+function ConfigScreen({onStart,soundOn,setSoundOn,vibrateOn,setVibrateOn}) {
+
 
   const startGame = () => {
     let timeInMinutes = document.getElementById('timerInput').value || 10;
@@ -33,6 +36,9 @@ function ConfigScreen({onStart}) {
           <option>10</option>
         </datalist>
       </div>
+      <br></br>
+      <button style={{margin:"1em"}} onClick={()=>setSoundOn(!soundOn)}>{(() => soundOn ? '🔈':'🔇')()}</button>
+      <button style={{margin:"1em"}} onClick={()=>setVibrateOn(!vibrateOn)}>{(() => vibrateOn ? 'vibrate on touch':'vibrate off')()}</button>
       <br></br>
       <button style={{"height": "24px"}} id="startBtn" onClick={startGame}>Start</button>
     </div>

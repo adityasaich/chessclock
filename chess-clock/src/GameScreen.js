@@ -4,7 +4,7 @@ import Player from './Player'
 import Pause from './Pause'
 import gameover from './gameover.mp3'
 
-function  GameScreen({time,increment}) {
+function  GameScreen({time,increment,soundOn,vibrateOn}) {
   const [isPlayer1White, setIsPlayer1White] = useState(true);
   const [isPlayer1Active, setIsPlayer1Active] = useState(true);
   const [player1Time, setPlayer1Time] = useState(time * 60);
@@ -87,7 +87,7 @@ function  GameScreen({time,increment}) {
     <div>
     <Pause paused={gamePaused} onClick={handlePauseClick}></Pause>
     <div style={{height: "100vh",textAlign: "center",display: "flex",flexDirection: "column"}}>
-    <Player onClick={handlePlayerMove} time={player1Time} isWhiteColor={isPlayer1White} isActive={isPlayer1Active} isPlayer1={true} />
+    <Player onClick={handlePlayerMove} time={player1Time} isWhiteColor={isPlayer1White} isActive={isPlayer1Active} isPlayer1={true} isSoundOn={soundOn} isVibrateOn={vibrateOn}/>
     { !gameStarted &&
       <div
         onClick={swapPlayers}
@@ -101,7 +101,7 @@ function  GameScreen({time,increment}) {
         }}> Swap White And Black
         </h2>
       </div> }
-    <Player onClick={handlePlayerMove} time={player2Time} isWhiteColor={!isPlayer1White} isActive={!isPlayer1Active} isPlayer1={false}/>
+    <Player onClick={handlePlayerMove} time={player2Time} isWhiteColor={!isPlayer1White} isActive={!isPlayer1Active} isPlayer1={false} isSoundOn={soundOn} isVibrateOn={vibrateOn}/>
     </div>
     </div>
   );
