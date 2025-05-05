@@ -4,11 +4,11 @@ import Player from './Player'
 import Pause from './Pause'
 import gameover from './gameover.mp3'
 
-function  GameScreen({time,increment,soundOn,vibrateOn}) {
+function  GameScreen({time1,time2,increment,soundOn,vibrateOn}) {
   const [isPlayer1White, setIsPlayer1White] = useState(true);
   const [isPlayer1Active, setIsPlayer1Active] = useState(true);
-  const [player1Time, setPlayer1Time] = useState(time * 60);
-  const [player2Time, setPlayer2Time] = useState(time * 60);
+  const [player1Time, setPlayer1Time] = useState(time1 * 60);
+  const [player2Time, setPlayer2Time] = useState(time2 * 60);
   const [gameStarted, setGameStarted] = useState(false);
   const [gameEnded, setGameEnded] = useState(false);
   const [gamePaused, setGamePaused] = useState(false);
@@ -70,6 +70,8 @@ function  GameScreen({time,increment,soundOn,vibrateOn}) {
 
   const swapPlayers = () => {
     setIsPlayer1White((p1White) => !p1White);
+    setPlayer1TimeAndRef(player2Time);
+    setPlayer2TimeAndRef(player1Time);
   }
 
   const handlePauseClick = () => {

@@ -6,20 +6,22 @@ import GameScreen from './GameScreen';
 
 function App() {
   const [gameStarted, setGameStarted] = useState(false);
-  const [time, setTime] = useState(15);
+  const [time1, setTime1] = useState(10);
+  const [time2, setTime2] = useState(10);
   const [increment, setIncrement] = useState(5);
   const [soundOn, setSoundOn] = useState(true);
   const [vibrateOn, setVibrateOn] = useState(true);
 
-  const startGame = (time,increment,soundOn,vibrateOn) => {
-    setTime(time);
+  const startGame = (time1,time2,increment) => {
+    setTime1(time1);
+    setTime2(time2);
     setIncrement(increment);
     setGameStarted(true);
   }
 
   return (
       <div>
-          { gameStarted ? <GameScreen time={time} increment={increment} soundOn={soundOn} vibrateOn={vibrateOn}/> : <ConfigScreen onStart={startGame} soundOn={soundOn} setSoundOn={setSoundOn} vibrateOn={vibrateOn} setVibrateOn={setVibrateOn}/> }      
+          { gameStarted ? <GameScreen time1={time1} time2={time2} increment={increment} soundOn={soundOn} vibrateOn={vibrateOn}/> : <ConfigScreen onStart={startGame} soundOn={soundOn} setSoundOn={setSoundOn} vibrateOn={vibrateOn} setVibrateOn={setVibrateOn}/> }      
       </div>
   )
 }

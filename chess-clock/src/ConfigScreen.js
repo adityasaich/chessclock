@@ -6,18 +6,35 @@ function ConfigScreen({onStart,soundOn,setSoundOn,vibrateOn,setVibrateOn}) {
 
 
   const startGame = () => {
-    let timeInMinutes = document.getElementById('timerInput').value || 10;
-    timeInMinutes = parseInt(timeInMinutes, 10)
+    let time1InMinutes = document.getElementById('timerInput1').value || 10;
+    time1InMinutes = parseInt(time1InMinutes, 10);
+    let time2InMinutes = document.getElementById('timerInput2').value || 10;
+    time2InMinutes = parseInt(time2InMinutes, 10)
     let incTime = document.getElementById('incTime').value || 5;
     incTime = parseInt(incTime, 10)
-    onStart(timeInMinutes, incTime);
+    onStart(time1InMinutes,time2InMinutes, incTime);
+  }
+
+  const handlePlayer1TimeChange = (event) => {
+    event.target.value && (document.getElementById('timerInput2').value = event.target.value)
   }
 
   return (
     <div style={{"text-align":"center"}}>
       <div>
-        <label style={{"font-size": "24px"}} for="timerInput">Enter Player Time In Minutes </label>
-        <input style={{"height": "24px"}}  type="number" list="timers" id="timerInput" placeholder="10"/>
+        <label style={{"font-size": "24px"}} for="timerInput">Enter White Player Time In Minutes </label>
+        <input style={{"height": "24px"}}  type="number" list="timers" id="timerInput1" placeholder="10" onChange={handlePlayer1TimeChange}/>
+        <datalist id="timers">
+          <option>1</option>
+          <option>3</option>
+          <option>10</option>
+          <option>15</option>
+        </datalist>
+      </div>
+      <br></br>
+      <div>
+        <label style={{"font-size": "24px"}} for="timerInput">Enter Black Player Time In Minutes </label>
+        <input style={{"height": "24px"}}  type="number" list="timers" id="timerInput2" placeholder="10"/>
         <datalist id="timers">
           <option>1</option>
           <option>3</option>
