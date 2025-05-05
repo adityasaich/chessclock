@@ -11,9 +11,9 @@ function ConfigScreen({onStart}) {
   }
 
   return (
-    <div>
+    <div style={{"text-align":"center"}}>
       <div>
-        <label for="timerInput">Choose Or Enter Player Time In Minutes</label>
+        <label for="timerInput">Choose Or Enter Player Time In Minutes </label>
         <input type="number" list="timers" id="timerInput" />
         <datalist id="timers">
           <option>1</option>
@@ -24,7 +24,7 @@ function ConfigScreen({onStart}) {
       </div>
       <br></br>
       <div>
-        <label for="incTime">Choose Or Enter Move Increment In Seconds</label>
+        <label for="incTime">Choose Or Enter Move Increment In Seconds </label>
         <input type="number" list="increments" id="incTime" />
         <datalist id="increments">
           <option>0</option>
