@@ -87,7 +87,7 @@ function  GameScreen({time1,time2,increment,soundOn,vibrateOn}) {
 
   return (
     <div>
-    <Pause paused={gamePaused} onClick={handlePauseClick}></Pause>
+    {gameStarted && <Pause paused={gamePaused} onClick={handlePauseClick}></Pause>}
     <div style={{height: "100vh",textAlign: "center",display: "flex",flexDirection: "column"}}>
     <Player onClick={handlePlayerMove} time={player1Time} isWhiteColor={isPlayer1White} isActive={isPlayer1Active} isPlayer1={true} isSoundOn={soundOn} isVibrateOn={vibrateOn}/>
     { !gameStarted &&
